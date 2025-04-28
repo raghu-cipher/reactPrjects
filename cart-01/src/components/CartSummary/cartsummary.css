@@ -1,0 +1,39 @@
+.summary-cont {
+    background-color: #fff;
+    margin-top: 14px;
+    padding: 9px;
+}
+.sub-cont {
+    display: flex;
+    justify-content: space-between;
+}
+.cart-heading {
+    font-size: 11px;
+    margin-bottom: 9px;
+}
+.apply-offer {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 12px;
+}
+.summary-text {
+    font-size: 9px;
+}
+.coupon-cont {
+    background-color: #eff6ff;
+    margin-top: 14px;
+    padding: 8px;
+}
+.progressbar {
+    background-color: #e6e6eb;
+    height: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    position: relative;
+}
+.progressfill {
+    background-color: #2a7ffb;
+    height: 100%;
+    border-radius: 5px;
+}
