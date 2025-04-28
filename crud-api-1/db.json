@@ -1,0 +1,16 @@
+{
+    "students" : [
+        {
+            "id" : 1 ,
+            "name" : "Seema",
+            "place" : "Hyderabad",
+            "phone": "123456789" 
+        },
+        {
+            "id" : 2 ,
+            "name" : "Dayenreys",
+            "place" : "Waranagal",
+            "phone": "123456789" 
+        }
+    ]
+}
