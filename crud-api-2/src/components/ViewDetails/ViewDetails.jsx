@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import { useStore } from '../../DataStore/DataStore'
-
+import React from 'react'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import { Link,useNavigate,useParams } from 'react-router-dom'
 
 const ViewDetails = () => {
 
@@ -14,7 +14,7 @@ const ViewDetails = () => {
     useEffect(() => {
         const fetchedData = async () => {
             try {
-                const resp = await fetch(`http://localhost:8000/students/${id}`)
+                const resp = await fetch(`http://localhost:4000/students/${id}`)
 
                 if (resp.ok === true) {
                     const result = await resp.json()
@@ -49,4 +49,4 @@ const ViewDetails = () => {
     )
 }
 
-export default ViewDetails 
+export default ViewDetails

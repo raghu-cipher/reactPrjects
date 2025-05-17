@@ -12,8 +12,8 @@ const App = () => {
             <Routes>
                 <Route exact path="/" element={<StudentTable />}></Route>
                 <Route exact path ="/student/create" element={<CreateStudent/>} ></Route>
-                <Route exact path = "/student/edit/:Id" element={<EditStudent />} ></Route>
-                <Route exact path = "/student/view/:Id" element = {<ViewDetails />} ></Route>
+                <Route exact path = "/student/edit/:id" element={<EditStudent />} ></Route>
+                <Route exact path = "/student/view/:id" element = {<ViewDetails />} ></Route>
             </Routes>
         </div>
     )

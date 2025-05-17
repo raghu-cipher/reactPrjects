@@ -1,31 +1,64 @@
-import React, { useEffect, useState } from 'react'
-
-import './studenttable.css'
+import React from 'react'
+import { useEffect } from 'react'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useStore } from '../../DataStore/DataStore.jsx'
 
-const apiUrl = "http://localhost:8000/students"
+const apiUrl = "http://localhost:4000/students"
+
+
 
 const StudentTable = () => {
-
     const [studentsData, setStudentsData] = useState(null)
-    // const message = useStore((state) => state.message)
-    const {data,message,error,setData} = useStore()
     const navigate = useNavigate()
 
-    const displayDetails = (id) => {
-        console.log(id)
-        navigate(`student/view/${id}`)
+    const handleView = id => {
+        console.log(`Click :${id}`)
+        navigate(`view/student/${id}`)
+        
     }
 
-    const handleEditDetails = (id) => {
-        console.log(id)
-        navigate(`student/edit/${id}`)
+    const handleEdit = id => {
+        console.log(`Click :${id}`)
+        navigate(`/edit/student/${id}`)
     }
 
-    // const handleDelete = (id) => {
-    //     console.log(id)
-    // }
+    const handleDelete = async id => {
+        console.log(`Click : ${id}`)
+        if(window.confirm("Are you sure want to delete ? ")) {
+            try {
+                const resp = await fetch(`http://localhost:4000/students/${id}`, {
+                    method: "DELETE"
+                    // headers: {
+                    //     "Content-Type": 'application/json'
+                    // },
+                    // body: JSON.stringify(formData)
+                })
+    
+                const result = await resp.json()
+    
+                console.log(resp.ok)
+    
+                if (resp.ok === true) {
+                    alert("Removed Student Data Successfully")
+                    // navigate('/')
+                    window.location.reload();
+                }
+                console.log('Success:', result);
+    
+                // //Reset Form 
+                // setFormData({
+                //     id: "",
+                //     name: '',
+                //     phone: '',
+                //     place: ''
+                // })
+    
+            } catch (error) {
+                console.log(error.message)
+                
+            }
+        }
+    }
 
     useEffect(() => {
         fetch(apiUrl).then((resp) => resp.json())
@@ -38,16 +71,13 @@ const StudentTable = () => {
             })
             
     }, [])
-    console.log(message)
-    console.log(data)
-    console.log(error)
-
+    console.log(studentsData)
     return (
         <div className='student-main-cont'>
             <div className='student-table-cont'>
                 <h2>Student Records</h2>
                 <div className='table-cont-main'>
-                    <Link to="/student/create" style={{ textDecoration: "none" }}>
+                    <Link to="/create" style={{ textDecoration: "none" }}>
                         <button className='btn add-btn'>Add New Student</button>
                     </Link>
 
@@ -73,13 +103,13 @@ const StudentTable = () => {
                                         <td>{item.phone}</td>
                                         <td>
                                             <button className="btn btn-view"
-                                                    onClick = {() => displayDetails(item.id)}
+                                                    onClick={() => handleView(item.id)}
                                             >view</button>
                                             <button className="btn btn-edit"
-                                                    onClick={() => handleEditDetails(item.id)}
+                                                    onClick={() => handleEdit(item.id)}
                                             >Edit</button>
                                             <button className="btn btn-delete"
-                                                    onClick={() => handleDelete(index)}
+                                                    onClick={() => handleDelete(item.id)}
                                             >Delete</button>
                                         </td>
                                     </tr>
